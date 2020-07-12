@@ -31,8 +31,8 @@ Plug 'junegunn/gv.vim'
 
 Plug 'tpope/vim-surround' "change surroundings like single or double quotes to different things (cs) or delete them (ds) easily
 Plug 'scrooloose/nerdcommenter' "comment/decomment lines easily
-" [count]<leader>cc     |nerd commenter|
-" [count]<leader>c<space>   |toggle comments (commented/uncommented)|
+"                               "[count]<leader>cc     |nerd commenter|
+"                               "[count]<leader>c<space>   |toggle comments (commented/uncommented)|
 
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'junegunn/rainbow_parentheses.vim'
@@ -49,11 +49,11 @@ Plug 'jiangmiao/auto-pairs' "toggle with <M-p>
 
 Plug 'honza/vim-snippets'
 Plug 'voldikss/vim-floaterm' "floating terminal for vim
-Plug 'alvan/vim-closetag'
+"Plug 'alvan/vim-closetag'  " auto close HTML tags
 
 Plug 'morhetz/gruvbox', { 'as': 'gruvbox' } "vim theme
 
-Plug 'liuchengxu/vim-which-key'
+"Plug 'liuchengxu/vim-which-key'
 Plug 'jeffkreeftmeijer/vim-numbertoggle' "automatically toggles between hybrid and absolute line numbers
 
 call plug#end()
@@ -108,6 +108,9 @@ let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
 
 " ALE (Asynchronous Lint Engine)
+" " auto close error-list when it's the last buffer open
+autocmd QuitPre * if empty(&bt) | lclose | endif
+
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
 let g:ale_fix_on_save = 1

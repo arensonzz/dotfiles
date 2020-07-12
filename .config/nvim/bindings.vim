@@ -2,9 +2,13 @@
 
 let mapleader = "\<Space>"
 
+" quit without saving
 nnoremap qq :q!<CR>
+" quit after saving
 nnoremap qw :wq<CR>
-nnoremap ww :w<CR>
+" save with Ctrl + S (might cause problems in some terminals, check my vim alias in .zshrc also)
+noremap <C-s> :w<CR>
+inoremap <C-s> <ESC>:w<CR>a
 
 " NERDTree
 nnoremap <silent> <C-c> :NERDTreeTabsToggle<CR>
@@ -14,8 +18,8 @@ nnoremap <leader>pv :NERDTreeFind<bar> :vertical resize 45<CR>
 nnoremap <Leader>v :Vista!!<CR>
 
 " Copy-paste bindings for system clipboard (+)
-nnoremap <Leader>y "+y
-nnoremap <Leader>p "+p
+nnoremap <Leader>yy "+y
+nnoremap <Leader>pp "+p
 
 " Change vim window focus
 map <C-h> <C-w>h
@@ -28,10 +32,11 @@ map <C-k> <C-w>k
 map <C-Up> <C-w>k
 
 " Move between tabs
-map <C-s><up> :tabr<cr>
-map <C-s><down> :tabl<cr>
-map <C-s><left> :tabp<cr>
-map <C-s><right> :tabn<cr>
+map <silent> <C-S><up> :tabp<cr>
+map <silent> <C-S><down> :tabn<cr>
+
+nnoremap <silent> <TAB> :tabn<cr>
+nnoremap <silent> <s-TAB> :tabp<cr>
 
 " Resize vim windows
 nnoremap <silent> <C-M-j> :resize -2<CR>
@@ -81,6 +86,10 @@ nmap <leader>rn <Plug>(coc-rename)
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" ALE bindings (Asynchronous Lint Engine)
+nmap <silent> (g <Plug>(ale_previous_wrap)
+nmap <silent> )g <Plug>(ale_next_wrap)
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
