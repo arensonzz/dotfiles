@@ -33,7 +33,8 @@ highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 highlight CursorLineNR cterm=bold
 set nowrap
 
-let g:python3_host_prog='/usr/bin/python3' "set python3 path
+ "set python3 path
+let g:python3_host_prog='~/.pyenv/versions/3.9.0/bin/python3.9'
 
 set ignorecase
 set smartcase
