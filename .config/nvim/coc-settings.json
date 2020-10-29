@@ -18,7 +18,7 @@
   "python.linting.flake8Enabled": false,
   "python.linting.flake8Args": ["--ignore=E501"],
   "python.jediEnabled": true,
-  "python.jediPath": "/usr/lib/python3.8/site-packages/",
+  "python.jediPath": "~/.local/lib/python3.8/site-packages",
   "python.formatting.autopep8Path": "/usr/bin/autopep8",
   "python.formatting.autopep8Args": [
     "--max-line-length=120"
@@ -27,6 +27,9 @@
   "html.enable": true,
 
   "eslint.autoFixOnSave": true,
+  "eslint.enable": false,
+
+  "tsserver.npm": "/usr/bin/npm",
 
   "suggest.noselect": false,
   "snippets.extends": {

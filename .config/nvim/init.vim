@@ -60,18 +60,18 @@ set smartindent
 let g:omni_sql_no_default_maps = 1
 
 " Language-specific
-"augroup langindentation
-"	autocmd Filetype go setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
-"	autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
-"	autocmd Filetype css setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-"	autocmd Filetype scss setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-"	autocmd Filetype javascript setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-"	autocmd Filetype html setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-"	autocmd Filetype htmldjango setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-"	autocmd Filetype handlebars setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-"	autocmd Filetype ember setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-"	autocmd Filetype json setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-"	autocmd Filetype yaml setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-"	autocmd Filetype xml setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-"	autocmd Filetype lua setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-"augroup END
+augroup langindentation
+"    autocmd Filetype go setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+    autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+    autocmd Filetype css setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd Filetype scss setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd Filetype javascript setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd Filetype html setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd Filetype htmldjango setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd Filetype handlebars setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd Filetype ember setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd Filetype json setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+"    autocmd Filetype yaml setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd Filetype xml setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+"    autocmd Filetype lua setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+augroup END
