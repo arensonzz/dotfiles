@@ -40,9 +40,6 @@ eval "$(fasd --init auto)"	# fasd
 
 
 ### Program aliases
-# python3
-#alias python='python3.8'
-
 # k plugin
 alias l='k -h'
 
