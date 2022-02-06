@@ -30,24 +30,22 @@ LOG_DIR=/tmp/system_install
 
 mkdir -p $LOG_DIR
 mkdir -p $TEMP_DIR
+# Empty log files
+echo "" >$LOG_DIR/apt_install.log
+
+exec 1>$LOG_DIR/apt_install.log
+
 # push user's directory onto stack
 pushd $(pwd)
 cd $TEMP_DIR
 
-# Empty log files
-echo "" >$LOG_DIR/apt_install.log
-
-# print output to both log file and console
-# https://stackoverflow.com/a/55968253/13175265
-test x$1 = x$'\x00' && shift || { set -o pipefail ; ( exec 2>&1 ; $0 $'\x00' "$@" ) | tee $LOG_DIR/apt_install.log ; exit $? ; }
-
-echo '# RUNNING APT-GET UPDATE #'
+echo '# RUNNING APT-GET UPDATE #' 1>/dev/tty
 apt-get -qq --yes update
-echo '> APT-GET UPDATE FINISHED <'
+echo '> APT-GET UPDATE FINISHED <' 1>/dev/tty
 
 ### Global software installation using apt-get
-echo '### GLOBAL SOFTWARE ###'
-echo '# INSTALLING APT APPS #'
+echo '### GLOBAL SOFTWARE ###' 1>/dev/tty
+echo '# INSTALLING APT APPS #' 1>/dev/tty
 
 apt-get -qq --yes install bat
 apt-get -qq --yes install apt-file
@@ -81,9 +79,9 @@ apt-get -qq --yes install neofetch
 if ! [ -x "$(command -v zsh)" ]; then
     # Configure zsh for the first install
     apt-get -qq --yes install zsh
-    echo "Changing default shell to ZSH."
-    chsh -s $(which zsh) $USER_HOME
-    echo "W: Please logout after for default shell change to take effect."
+    echo "Changing default shell to ZSH." 1>/dev/tty
+    chsh -s $(which zsh) $(whoami) 1>/dev/tty
+    echo "W: Please logout after for default shell change to take effect." 1>/dev/tty
 else
     apt-get -qq --yes install zsh
 fi
@@ -92,9 +90,10 @@ apt-get -qq --yes install tmux
 apt-get -qq --yes install ffmpeg
 apt-get -qq --yes install python3-pip
 
-echo '> APT APPS INSTALL FINISHED <'
-echo '# INSTALLING PYENV DEPENDENCIES #'
+echo '> APT APPS INSTALL FINISHED <' 1>/dev/tty
+echo '# INSTALLING PYENV DEPENDENCIES #' 1>/dev/tty
 apt-get -qq --yes install make build-essential libssl-dev zlib1g-dev \
 libbz2-dev libreadline-dev libsqlite3-dev llvm \
 libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
-echo '> PYENV DEPENDENCY INSTALL FINISHED <'
+echo '> PYENV DEPENDENCY INSTALL FINISHED <' 1>/dev/tty
+echo '### GLOBAL SOFTWARE FINISHED ###' 1>/dev/tty
