@@ -40,7 +40,7 @@ pushd $(pwd)
 cd $TEMP_DIR
 
 echo '# RUNNING APT-GET UPDATE #' 1>/dev/tty
-apt-get -qq --yes update
+apt-get -qq --yes update 1>/dev/tty
 echo '> APT-GET UPDATE FINISHED <' 1>/dev/tty
 
 ### Global software installation using apt-get
