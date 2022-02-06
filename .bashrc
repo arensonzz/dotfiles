@@ -10,6 +10,10 @@ fi
 alias usage='du -sk * | sort -n | perl -ne '\''($s,$f)=split(m{\t});for (qw(K M G)) {if($s<1024) {printf("%.1f",$s);print "$_\t$f"; last};$s=$s/1024}'\'
 alias ls="ls --color"
 
+
+# Change path
+export PATH="$PATH:$HOME/.local/bin:$HOME/bin"
+
 ### PROMPT CONFIG
 # show full path for current directory
 export PS1="\[\033[1;32m\]\u \[\033[31m\]\W $ \[\033[0m\]"

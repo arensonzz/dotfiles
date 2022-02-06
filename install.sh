@@ -27,10 +27,6 @@ esac
 TEMP_DIR=$HOME/setup-temp
 LOG_DIR=/tmp/system_install
 
-# print output to both log file and console
-# https://stackoverflow.com/a/55968253/13175265
-test x$1 = x$'\x00' && shift || { set -o pipefail ; ( exec 2>&1 ; $0 $'\x00' "$@" ) | tee $LOG_DIR/install.log ; exit $? ; }
-
 mkdir -p $LOG_DIR
 mkdir -p $TEMP_DIR
 # push user's directory onto stack
