@@ -100,7 +100,7 @@ else
 fi
 
 # install nvm
-if ! [ -x "$(command -v nvm)" ]; then
+if ! [ -d "$HOME/.nvm" ]; then
     echo '# INSTALLING NVM (V0.39.1) #'
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
     # initialize nvm
@@ -131,7 +131,7 @@ else
 fi
 
 # install pyenv
-if ! [ -x "$(command -v pyenv)" ]; then
+if ! [ -d "$HOME/pyenv" ]; then
     echo '# INSTALLING LATEST PYENV #'
     # install pyenv using automatic installer
     curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
@@ -146,7 +146,7 @@ if ! [ -x "$(command -v pyenv)" ]; then
 'export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)
+eval "$(pyenv virtualenv-init -)"
 ' >> $HOME/.bashrc
     # install pyenv plugins
     git clone https://github.com/momo-lab/xxenv-latest.git "$(pyenv root)"/plugins/xxenv-latest
@@ -188,11 +188,11 @@ if ! [ -x "$(command -v fzf)" ]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
     $HOME/.fzf/install
     # initialize fzf
-    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+    [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
     echo '# initialize fzf' >> $HOME/.bashrc
     echo \
-'[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+'[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 ' >> $HOME/.bashrc
 else
     echo '# W: FZF ALREADY INSTALLED, UPDATING #'
