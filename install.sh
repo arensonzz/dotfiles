@@ -64,6 +64,10 @@ fi
 if ! [ -x "$(command -v nvm)" ]; then
     echo '# INSTALLING NVM (V0.39.1) #'
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+    # initialize nvm
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 else
     echo '# W: NVM ALREADY INSTALLED (CHECK LATEST VERSION FROM NVM-SH/NVM GITHUB PAGE!) #'
 fi
@@ -72,13 +76,9 @@ fi
 if ! [ -x "$(command -v node)" ]; then
     echo '# INSTALLING LATEST LTS NODEJS #'
 
-    # reload terminal to obtain nvm
-    sudo -i -u "$(whoami)" zsh <<EOF
-        nvm install --lts
-        nvm alias default node
-        nvm use --lts
-EOF
-
+    nvm install --lts
+    nvm alias default node
+    nvm use --lts
 else
     echo '# W: NODEJS ALREADY INSTALLED (CHECK LATEST VERSION FROM "NVM LIST" COMMAND!) #'
 fi
@@ -87,21 +87,19 @@ fi
 if ! [ -x "$(command -v pyenv)" ]; then
     echo '# INSTALLING LATEST PYENV #'
     # install pyenv using automatic installer
-    curl -L https://github.com/psyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
-    # reload terminal to obtain pyenv
-    sudo -i -u "$(whoami)" zsh <<EOF
-        # install pyenv plugins
-        git clone https://github.com/pyenv/pyenv-update.git $(pyenv root)/plugins/pyenv-update
+    curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+    # initialize pyenv
+    export PATH="$HOME/.pyenv/bin:$PATH"
+    eval "$(pyenv init --path)"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
 
-        git clone git://github.com/pyenv/pyenv-doctor.git $(pyenv root)/plugins/pyenv-doctor
-        git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
-        git clone https://github.com/momo-lab/xxenv-latest.git "$(**env root)"/plugins/xxenv-latest
-        pyenv update
-
-        # install latest python version inside pyenv
-        pyenv latest install
-        pyenv latest global
-EOF
+    # install pyenv plugins
+    git clone https://github.com/momo-lab/xxenv-latest.git "$(pyenv root)"/plugins/xxenv-latest
+    pyenv update
+    # install latest python version inside pyenv
+    pyenv latest install
+    pyenv latest global
 else
     echo '# W: PYENV ALREADY INSTALLED, UPDATING #'
     pyenv update
@@ -112,6 +110,11 @@ if ! [ -x "$(command -v pipx)" ]; then
     echo '# INSTALLING LATEST PIPX #'
     python3 -m pip install --user pipx
     python3 -m pipx ensurepath
+    # initialize pipx
+    #   Set pipx default python interpreter
+    export PIPX_DEFAULT_PYTHON="$HOME/.pyenv/versions/3.9.0/bin/python"
+    #   Load pipx completions
+    eval "$(register-python-argcomplete pipx)"
 else
     echo '# W: PIPX ALREADY INSTALLED, UPDATING #'
     python3 -m pip install --user -U pipx
@@ -122,6 +125,8 @@ if ! [ -x "$(command -v fzf)" ]; then
     echo '# INSTALLING LATEST FZF #'
     git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
     $HOME/.fzf/install
+    # initialize fzf
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 else
     echo '# W: FZF ALREADY INSTALLED, UPDATING #'
     pushd $(pwd)
@@ -137,19 +142,16 @@ echo '### NPM APPS ###'
 
 if [ -x "$(command -v npm)" ]; then
     echo '# INSTALLING NPM APPS #'
-    # reload terminal to obtain npm
-    sudo -i -u "$(whoami)" zsh <<EOF
-        npm i -g --quiet livedown
-        npm i -g --quiet live-server
-        npm i -g --quiet http-server
-        npm i -g --quiet neovim
-        npm i -g --quiet tldr
-        npm i -g --quiet sql-lint
-        npm i -g --quiet wsl-open
-        echo '> NPM APPS INSTALL FINISHED <'
-        echo '# UPDATING NPM APPS #'
-        npm i -g --quiet npm-check-updates
-EOF
+    npm i -g --quiet livedown
+    npm i -g --quiet live-server
+    npm i -g --quiet http-server
+    npm i -g --quiet neovim
+    npm i -g --quiet tldr
+    npm i -g --quiet sql-lint
+    npm i -g --quiet wsl-open
+    echo '> NPM APPS INSTALL FINISHED <'
+    echo '# UPDATING NPM APPS #'
+    npm i -g --quiet npm-check-updates
 else
     echo '# E: NPM NOT INSTALLED, COULD NOT INSTALL THE APPS #'
 fi
@@ -161,19 +163,16 @@ echo '### PIPX APPS ###'
 
 if [ -x "$(command -v pipx)" ]; then
     echo '# INSTALLING PIPX APPS #'
-    # reload terminal to obtain npm
-    sudo -i -u "$(whoami)" zsh <<EOF
-        pipx install yt-dlp
-        pipx install flake8
-        pipx install autopep8
-        pipx install youtube-dl
-        pipx install jedi-language-server
-        pipx install pycodestyle
-        echo '> PIPX APPS INSTALL FINISHED <'
+    pipx install yt-dlp
+    pipx install flake8
+    pipx install autopep8
+    pipx install youtube-dl
+    pipx install jedi-language-server
+    pipx install pycodestyle
+    echo '> PIPX APPS INSTALL FINISHED <'
 
-        echo '# UPDATING PIPX APPS #'
-        pipx upgrade-all
-EOF
+    echo '# UPDATING PIPX APPS #'
+    pipx upgrade-all
 else
     echo '# E: PIPX NOT INSTALLED, COULD NOT INSTALL THE APPS #'
 fi
