@@ -255,7 +255,8 @@ let g:indent_blankline_show_current_context = v:false
 " nvim-tresitter config
 lua << EOF
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = { "bash", "bibtex", "c", "c_sharp", "cmake", "comment", "cpp", "css", "dockerfile", "http", "java", "json", "json5", "jsonc", "latex", "lua", "make", "norg", "python", "regex", "rust", "scss", "typescript", "javascript", "vim", "yaml" },
+   --  ensure_installed = { "bash", "bibtex", "c", "c_sharp", "cmake", "comment", "cpp", "css", "dockerfile", "http", "java", "json", "json5", "jsonc", "latex", "lua", "make", "norg", "python", "regex", "rust", "scss", "typescript", "javascript", "vim", "yaml" },
+    ensure_installed = { "bash", "c", "cmake", "comment", "cpp", "dockerfile", "json", "lua", "make", "python", "regex", "vim", "vimdoc", "yaml" },
     sync_install = true,
     ignore_install = {},
     highlight = {
