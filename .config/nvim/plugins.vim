@@ -93,7 +93,6 @@ Plug 'OmniSharp/omnisharp-vim'
 " Plug 'jamestthompson3/nvim-remote-containers'
 Plug 'chipsenkbeil/distant.nvim', { 'branch': 'v0.2' }
 
-
 call plug#end()
 
 function! SetupCommandAbbrs(from, to)
