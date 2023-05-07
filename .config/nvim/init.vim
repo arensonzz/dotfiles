@@ -122,7 +122,7 @@ augroup END
 augroup set_filetype_by_extension
     autocmd!
     " autocmd BufRead,BufNewFile *.html set filetype=html.jinja.javascript
-    autocmd BufNewFile, BufRead *.launch set filetype=xml
+    autocmd BufNewFile,BufRead *.launch set filetype=xml
 augroup END
 
 " Set which files will use highlight from start of file (fix for Javascript
