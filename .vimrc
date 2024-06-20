@@ -645,3 +645,14 @@ if !has('nvim')
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : exists("g:loaded_snips")
         \ ? "\<C-r>=BackwardsSnippet()\<CR>" : "\<S-Tab>"
 endif
+
+" Fix meta keybindings in Vim
+if !has('nvim')
+    execute "set <M-a>=\ea"
+    execute "set <M-e>=\ee"
+    execute "set <M-n>=\en"
+    execute "set <M-p>=\ep"
+    execute "set <M-s>=\es"
+    execute "set <M-t>=\et"
+    execute "set <M-u>=\eu"
+endif
