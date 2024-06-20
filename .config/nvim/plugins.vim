@@ -48,6 +48,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'cdelledonne/vim-cmake'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'igankevich/mesonic' " meson build system integration
+Plug 'mbbill/undotree' " the undo history visualizer for VIM
 
 " ## Extra Vim plugins
 Plug 'shime/vim-livedown' " live preview of markdown
