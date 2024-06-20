@@ -163,6 +163,7 @@ if !has('nvim')
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'igankevich/mesonic' " meson build system integration
     Plug 'mbbill/undotree' " the undo history visualizer for VIM
+    Plug 'tpope/vim-repeat' " enable repeating supported plugin maps with "."
 
     " ## Vim only plugins
     Plug 'tpope/vim-vinegar'
