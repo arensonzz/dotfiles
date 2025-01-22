@@ -278,7 +278,7 @@ augroup END
 
 " Set linters by file type
 let g:ale_linters = {
-\   'javascript': ['eslint'],
+\   'javascript': [],
 \   'typescript': [],
 \   'python': ['flake8'],
 \   'html': ['tidy'],
@@ -337,8 +337,8 @@ let g:ale_sh_shfmt_options = "-i 4 -fn -sr -ci"
 
 " Javascript
 let g:ale_javascript_prettier_use_local_config = 1
-"let g:ale_javascript_prettier_executable = './node_modules/.bin/prettier'
-"let g:ale_javascript_eslint_executable = './node_modules/.bin/eslint'
+let g:ale_javascript_prettier_executable = './node_modules/.bin/prettier'
+let g:ale_javascript_eslint_executable = './node_modules/.bin/eslint'
 
 " Scss
 let g:ale_scss_stylelint_use_global = 1
@@ -1037,11 +1037,11 @@ command! BuffersModified call fzf#run(fzf#wrap({
 \ }))
 
 " Don't consider filename as a match in :Rg command
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case "
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --glob '!.git/**' --glob '!node_modules/**' --hidden --column --line-number --no-heading --color=always --smart-case "
     \ .shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 " :RG command with --max-depth option given as parameter
-command! -bang -nargs=1 RGd call fzf#vim#grep2("rg --column --line-number --no-heading --color=always --smart-case --max-depth "
+command! -bang -nargs=1 RGd call fzf#vim#grep2("rg --glob '!.git/**' --glob '!node_modules/**' --hidden --column --line-number --no-heading --color=always --smart-case --max-depth "
     \ .(<q-args>), '', {}, <bang>0)
 
 let s:config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
