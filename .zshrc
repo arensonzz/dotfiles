@@ -1,9 +1,20 @@
 #
 # Executes commands at the start of an interactive session.
 #
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+
+# ---------------
+# .ZSHRC CONTENTS
+# ---------------
+
+# 01. _FUNCTIONS_
+# 02. _SCRIPT_SOURCE_
+# 03. _ALIASES_
+# 04. _SETTINGS_
+# 05. _PROGRAM_INIT_
+
+# -----------
+# _FUNCTIONS_
+# -----------
 
 handle_error()
 {
@@ -12,6 +23,10 @@ handle_error()
         && exec /usr/bin/env bash \
         || exit 1
 }
+
+# ---------------
+# _SCRIPT_SOURCE_
+# ---------------
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -24,14 +39,6 @@ fi
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
-
-# ---------------
-# .ZSHRC CONTENTS
-# ---------------
-
-# 01. _ALIASES_
-# 02. _SETTINGS_
-# 03. _PROGRAM_INIT_
 
 # ---------
 # _ALIASES_
