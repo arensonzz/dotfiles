@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# -------------------------
+# @file toggle-system-theme
+# @author arensonz
+# @date 2025-02-04
+# @brief Switch between system wide dark and light mode with each execution
+# -------------------------
+
+DARK_THEME='Adapta-Nokto'
+DARK_THEME_ICONS='ePapirus-Dark'
+LIGHT_THEME='Adapta'
+LIGHT_THEME_ICONS='ePapirus'
+
+COLOR_VALUE="$(cat /tmp/system_theme_color 2>/dev/null)"
+
+if [[ "$COLOR_VALUE" = "light" ]]; then
+    THEME=$DARK_THEME
+    ICON_THEME=$DARK_THEME_ICONS
+    echo "dark" > /tmp/system_theme_color
+else
+    THEME=$LIGHT_THEME
+    ICON_THEME=$LIGHT_THEME_ICONS
+    echo "light" > /tmp/system_theme_color
+fi
+
+gsettings set org.cinnamon.desktop.interface icon-theme $ICON_THEME
+gsettings set org.cinnamon.desktop.interface gtk-theme $THEME
+gsettings set org.cinnamon.desktop.wm.preferences theme $THEME
+gsettings set org.mate.interface icon-theme  $ICON_THEME
+gsettings set org.mate.interface gtk-theme  $THEME
+gsettings set org.cinnamon.theme name  $THEME
+
+gsettings set org.gnome.desktop.interface icon-theme $ICON_THEME
+gsettings set org.gnome.desktop.interface gtk-theme $THEME

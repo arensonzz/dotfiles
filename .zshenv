@@ -24,4 +24,5 @@ export PATH="$HOME/.dotnet/tools:$HOME/.pyenv/bin:$HOME/.local/bin:$HOME/bin:$HO
 # pipx
 export PIPX_DEFAULT_PYTHON="$HOME/.pyenv/versions/$(pyenv version-name)/bin/python"
 
-if [ -e /home/pc-2811/.nix-profile/etc/profile.d/nix.sh ]; then . /home/pc-2811/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+# nix
+[ -e $HOME/.nix-profile/etc/profile.d/nix.sh ] && source $HOME/.nix-profile/etc/profile.d/nix.sh

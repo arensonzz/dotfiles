@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# -----------------------
+# @file any-term-dropdown
+# @author arensonz
+# @date 2025-02-04
+# @brief Turn any terminal into a drop-down (Quake-style) terminal
+#
+# @depend coreutils
+# @depend xdotool
+# @depend libxcb-util-dev
+# @depend libxcb-cursor-dev
+# @depend wmutils https://github.com/wmutils/core
+# -----------------------
+
+TERM_BIN="alacritty"
+
+# get screen resolution width and height
+readonly ROOT=$(lsw -r)
+readonly WIDTH=$(wattr w "$ROOT")
+readonly HEIGHT=$(wattr h "$ROOT")
+
+pgrep -x "$TERM_BIN" >/dev/null
+EXIT_CODE=$?
+if [ "$EXIT_CODE" -ne 0 ]; then
+    "$TERM_BIN" &
+fi
+
+# get terminal emulator and matching name pid ex: 44040485
+PID=$(comm -12 <(xdotool search --name "$TERM_BIN" | sort) <(xdotool search --class "$TERM_BIN" | sort))
+
+# get windows id from pid ex: 0x2a00125%
+WID=$(printf 0x%x "$PID")
+
+# maximize terminal emulator
+wrs "$WIDTH" "$HEIGHT" "$WID"
+
+# toggle show/hide terminal emulator
+mapw -t "$WID"
