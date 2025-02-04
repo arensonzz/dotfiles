@@ -15,5 +15,5 @@
 # TODO: change keyboard layout to refresh available keys
 if [ -x "$HOME/programs/swift-map/mainloop.py" ]; then
     pkill -f ".*swift-map/mainloop.py"
-    exec $HOME/programs/swift-map/mainloop.py nosleep
+    exec "$HOME/programs/swift-map/mainloop.py" nosleep
 fi
